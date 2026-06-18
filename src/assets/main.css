@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+@theme {
+  --font-sans: "Fredoka", sans-serif;
+}
+
+@import "tailwindcss";
+
+ body{
+   background-color: #fbf9f1;
+ }
