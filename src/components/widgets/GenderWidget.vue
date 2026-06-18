@@ -3,7 +3,7 @@ import {supabase} from "@/utils/supabase.ts";
 import {onMounted, ref} from "vue";
 import Chart from 'primevue/chart';
 
-const widgetData = ref({})
+const widgetData = ref<any[] | null>(null)
 const chartData = ref()
 const chartOptions = ref()
 

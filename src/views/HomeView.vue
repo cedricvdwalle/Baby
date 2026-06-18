@@ -4,15 +4,16 @@ import {Button, InputNumber, InputText, InputGroup, InputGroupAddon, DatePicker}
 
 import {supabase} from '../utils/supabase'
 import {ref, onMounted} from "vue";
-import IconBody from "@/components/svg/IconBody.vue";
+
 import IconRuler from "@/components/svg/IconRuler.vue";
 import IconScale from "@/components/svg/IconScale.vue";
 import IconClock from "@/components/svg/IconClock.vue";
+import IconBody from "@/components/svg/IconBody.vue";
 
 const session = ref()
 
 const guess = ref({
-  user_id: null,
+  user_id: null as string | null,
   gender: "",
   name: "",
   size: null,
@@ -29,7 +30,7 @@ async function loadSession(){
   }
 
   session.value = data.session
-  guess.value.user_id = data.session.user.id
+  guess.value.user_id = data.session?.user.id || null
 }
 
 async function loadExistingGuess(){

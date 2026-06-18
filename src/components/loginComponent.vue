@@ -2,12 +2,13 @@
 
 import {supabase} from "@/utils/supabase.ts";
 import {Button, InputText, InputGroup, InputGroupAddon,Message} from "primevue";
+
 import {ref} from "vue";
 
 const email = ref('')
 const code = ref('')
 const step = ref('request') // request | verify
-const feedback = ref({})
+const feedback = ref<{ message?: string }>({})
 
 const emit = defineEmits<{
   loggedIn: []
@@ -19,7 +20,7 @@ const send = async () => {
     feedback.value = error
   }
   else{
-    feedback.value = null
+    feedback.value = {}
     step.value = 'verify'
   }
 }
@@ -36,7 +37,7 @@ const verify = async () => {
   })
 
   if(error) {
-    feedback.value = null
+    feedback.value = {}
     feedback.value = error
   }
   else{

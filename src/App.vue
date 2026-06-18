@@ -4,8 +4,9 @@ import {supabase} from "@/utils/supabase.ts";
 import {onMounted, ref} from "vue";
 import LoginComponent from "@/components/loginComponent.vue";
 import {Button} from "primevue";
+import type { Session } from '@supabase/supabase-js'
 
-const session = ref({})
+const session = ref<Session | null>(null)
 
 async function loadSession() {
   const {data, error} = await supabase.auth.getSession()
