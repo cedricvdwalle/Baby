@@ -4,6 +4,14 @@
   --font-sans: "Fredoka", sans-serif;
 }
 
+:root {
+  --primary-color: #c8768; /* your color */
+}
+
+.bg-secondary {
+  background: #c87676;
+}
+
 @import "tailwindcss";
 
  body{

@@ -30,6 +30,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <Toast />
   <div class="bg-wedding min-h-screen">
     <header v-if="session">
       <div class="wrapper text-center p-2 mb-2 ">
@@ -44,7 +45,9 @@ onMounted(async () => {
       <div class="w-full md:w-4/5 lg:w-3/5 mx-auto">
         <LoginComponent v-if="!session" @loggedIn="loadSession"/>
         <div v-else>
-          <RouterView/>
+          <div class="bg-light p-4 rounded-md shadow-md">
+            <RouterView/>
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,9 @@ import IconRuler from "@/components/svg/IconRuler.vue";
 import IconScale from "@/components/svg/IconScale.vue";
 import IconClock from "@/components/svg/IconClock.vue";
 import IconBody from "@/components/svg/IconBody.vue";
+import { useToast } from 'primevue/usetoast';
 
+const toast = useToast();
 const session = ref()
 
 const guess = ref({
@@ -56,19 +58,32 @@ const options = ref([
 ])
 
 async function save() {
-  const {data} = await supabase.schema('Baby').from('Guesses').upsert([
+  const {data, error} = await supabase.schema('Baby').from('Guesses').upsert([
     guess.value,
   ]).select().single() // optional: returns inserted row
 
   if (data) {
+    toast.add({
+      severity: 'success',
+      summary: 'Verstuurd!',
+      detail: 'Antwoord is doorgestuurd',
+      life: 3000
+    });
     guess.value = data
+  } else{
+    toast.add({
+      severity: 'error',
+      summary: 'Fout!',
+      detail: error.message,
+      life: 3000
+    });
   }
 }
 
 </script>
 
 <template>
-  <div class="bg-light p-4 rounded-md">
+
     <span class="fredoka-text font-bold text-3xl">Raad onze baby!</span>
 
     <p class="fredoka-text"> Tijd om een gokje te wagen, wat denk jij dat het wordt? Een kleine Yanan
@@ -83,7 +98,7 @@ async function save() {
       <!-- custom option rendering -->
       <template #option="{ option }">
         <div class="flex flex-col items-center gap-1 py-1">
-          <IconBody :color="option.color" class="w-50 h-50 object-cover rounded"/>
+          <IconBody :color="option.color" class="w-[70%] object-cover rounded"/>
           <span class="text-xl">{{ option.label }}</span>
         </div>
       </template>
@@ -118,8 +133,7 @@ async function save() {
       </InputGroup>
     </div>
 
-    <Button class="w-full my-1" @click="save()">Verzend</Button>
-  </div>
+    <Button class="w-full my-1 bg-secondary" @click="save()">Verzend</Button>
 
 </template>
 

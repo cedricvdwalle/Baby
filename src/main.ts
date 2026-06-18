@@ -1,6 +1,9 @@
 import './assets/main.css'
 import 'primeicons/primeicons.css'
 
+import ToastService from 'primevue/toastservice';
+import Toast from 'primevue/toast';
+
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
 import { createPinia } from 'pinia'
@@ -14,6 +17,8 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(ToastService);
+app.component('Toast', Toast);
 
 app.use(PrimeVue, {
   theme: {
