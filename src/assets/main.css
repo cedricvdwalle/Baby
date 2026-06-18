@@ -9,3 +9,22 @@
  body{
    background-color: #fbf9f1;
  }
+
+ .bg-wedding {
+   background-image: url('@/assets/img/background_lq.jpg');
+   background-size: cover;
+ }
+.bg-wedding::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6); /* adjust opacity */
+}
+.bg-wedding > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-light {
+  background-color: #fbf9f1;
+}
