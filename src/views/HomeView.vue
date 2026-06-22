@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Button, InputText, InputGroup, InputGroupAddon, DatePicker} from "primevue";
+import {Button, InputText, InputGroup, InputGroupAddon, DatePicker, InputNumber} from "primevue";
 
 import {supabase} from '../utils/supabase'
 import {ref, onMounted} from "vue";
@@ -109,7 +109,7 @@ async function save() {
         <InputGroupAddon>
           <BaseIcon name="ruler" size="35px"/>
         </InputGroupAddon>
-        <InputNumber v-model="guess.size" placeholder="Grootte"/>
+        <InputNumber v-model="guess.size" placeholder="Grootte" :useGrouping="false" />
         <InputGroupAddon>cm</InputGroupAddon>
       </InputGroup>
 
@@ -117,7 +117,7 @@ async function save() {
         <InputGroupAddon>
           <BaseIcon name="scale" size="35px"/>
         </InputGroupAddon>
-        <InputNumber v-model="guess.weight" placeholder="Gewicht"/>
+        <InputNumber v-model="guess.weight" placeholder="Gewicht" :useGrouping="false" />
         <InputGroupAddon>gram</InputGroupAddon>
       </InputGroup>
 
