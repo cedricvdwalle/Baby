@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import "./components/gender.css";
 
 @theme {
   --font-sans: "Fredoka", sans-serif;
@@ -22,12 +23,16 @@
    background-image: url('@/assets/img/background_lq.jpg');
    background-size: cover;
  }
+
 .bg-wedding::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.6); /* adjust opacity */
+  background: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  z-index: 0;
 }
+
 .bg-wedding > * {
   position: relative;
   z-index: 1;

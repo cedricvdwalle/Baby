@@ -4,7 +4,8 @@ import {supabase} from "@/utils/supabase.ts";
 import {onMounted, ref} from "vue";
 import LoginComponent from "@/components/loginComponent.vue";
 import {Button} from "primevue";
-import type { Session } from '@supabase/supabase-js'
+import type {Session} from '@supabase/supabase-js'
+import MenuComponent from "@/components/MenuComponent.vue";
 
 const session = ref<Session | null>(null)
 
@@ -30,8 +31,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Toast />
-  <div class="bg-wedding min-h-screen">
+  <Toast/>
+  <div class="bg-wedding min-h-screen p-2">
+    <!--
     <header v-if="session">
       <div class="wrapper text-center p-2 mb-2 ">
         <nav>
@@ -41,12 +43,16 @@ onMounted(async () => {
         </nav>
       </div>
     </header>
+    -->
     <div>
       <div class="w-full md:w-4/5 lg:w-3/5 mx-auto">
         <LoginComponent v-if="!session" @loggedIn="loadSession"/>
         <div v-else>
-          <div class="bg-light p-4 rounded-md shadow-md">
-            <RouterView/>
+          <div class="bg-neutral-100/50 rounded-2xl shadow-lg">
+            <MenuComponent @logout="logout"/>
+            <div class="w-full p-3 bg-yellow-50 opacity-100 rounded-t-2xl rounded-b-2xl">
+              <RouterView/>
+            </div>
           </div>
         </div>
       </div>

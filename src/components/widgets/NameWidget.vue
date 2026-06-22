@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import {supabase} from "@/utils/supabase.ts";
 import {onMounted, ref} from "vue";
-import {DataTable,Column} from "primevue";
+import BarComponent from "@/components/widgets/components/BarComponent.vue";
 
-const widgetData = ref<any[] | null>(null)
-
-const colorMap: Record<string, string> = {
-  Jongen: "#dfebeb", // blue
-  Meisje: "#f6ded8", // green
-  default: "#FFA726" // orange
-}
+const widgetData = ref<
+  { percentage: number; name: string }[] | null
+>(null)
 
 onMounted(() => {
   getData()
@@ -29,8 +25,10 @@ async function getData(){
 </script>
 
 <template>
-  <DataTable :value="widgetData">
-    <Column field="name" header="Naam"></Column>
-    <Column field="count" header="Aantal"></Column>
-  </DataTable>
+    <div class="rounded-xl p-6 bg-[#fefce8] shadow-md ring-1 ring-amber-100" v-if="widgetData">
+      <span class="text-xl font-bold">Top 5 Namen</span>
+      <div v-for='item in widgetData'>
+        <BarComponent :name="item.name" :percent="item.percentage"/>
+      </div>
+    </div>
 </template>

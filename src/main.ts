@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/style/main.css'
 import 'primeicons/primeicons.css'
 
 import ToastService from 'primevue/toastservice';

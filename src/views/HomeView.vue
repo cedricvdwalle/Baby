@@ -1,30 +1,36 @@
 <script setup lang="ts">
-import SelectButton from "primevue/selectbutton"
-import {Button, InputNumber, InputText, InputGroup, InputGroupAddon, DatePicker} from "primevue";
+import {Button, InputText, InputGroup, InputGroupAddon, DatePicker} from "primevue";
 
 import {supabase} from '../utils/supabase'
 import {ref, onMounted} from "vue";
 
-import IconRuler from "@/components/svg/IconRuler.vue";
-import IconScale from "@/components/svg/IconScale.vue";
-import IconClock from "@/components/svg/IconClock.vue";
-import IconBody from "@/components/svg/IconBody.vue";
-import { useToast } from 'primevue/usetoast';
+import {useToast} from 'primevue/usetoast';
+import GenderSelect from "@/components/form/GenderSelect.vue";
+import BaseIcon from "@/assets/icon/BaseIcon.vue";
 
 const toast = useToast();
 const session = ref()
 
-const guess = ref({
-  user_id: null as string | null,
-  gender: "",
+type Gender = "jongen" | "meisje" | null
+
+const guess = ref<{
+  user_id: string | null
+  gender: Gender
+  name: string
+  size: number | null
+  weight: number | null
+  time: Date | null
+}>({
+  user_id: null,
+  gender: null,
   name: "",
   size: null,
   weight: null,
   time: null
 })
 
-async function loadSession(){
-  const { data, error } = await supabase.auth.getSession()
+async function loadSession() {
+  const {data, error} = await supabase.auth.getSession()
 
   if (error) {
     console.error(error)
@@ -35,8 +41,8 @@ async function loadSession(){
   guess.value.user_id = data.session?.user.id || null
 }
 
-async function loadExistingGuess(){
-  const { data } = await supabase.schema('Baby')
+async function loadExistingGuess() {
+  const {data} = await supabase.schema('Baby')
     .from('Guesses')
     .select('*')
     .eq('user_id', session.value.user.id)
@@ -52,11 +58,6 @@ onMounted(async () => {
   await loadExistingGuess()
 })
 
-const options = ref([
-  {label: 'Jongen', value: 'Jongen', color: "#dfebeb"},
-  {label: 'Meisje', value: 'Meisje', color: "#f6ded8"}
-])
-
 async function save() {
   const {data, error} = await supabase.schema('Baby').from('Guesses').upsert([
     guess.value,
@@ -70,11 +71,11 @@ async function save() {
       life: 3000
     });
     guess.value = data
-  } else{
+  } else {
     toast.add({
       severity: 'error',
       summary: 'Fout!',
-      detail: error.message,
+      detail: error?.message || '',
       life: 3000
     });
   }
@@ -83,57 +84,52 @@ async function save() {
 </script>
 
 <template>
+  <div>
+    <span class="fredoka-text font-bold text-3xl">Dit is mijn gokje!</span>
 
-    <span class="fredoka-text font-bold text-3xl">Raad onze baby!</span>
-
-    <p class="fredoka-text"> Tijd om een gokje te wagen, wat denk jij dat het wordt? Een kleine Yanan
+    <p class="fredoka-text"> Tijd om een gokje te wagen, wat denk jij dat het wordt? Een kleine
+      Yanan
       of een kleine Cédric? </p>
-    <SelectButton
-      v-model="guess.gender"
-      :options="options"
-      optionLabel="label"
-      optionValue="value"
-      fluid
-    >
-      <!-- custom option rendering -->
-      <template #option="{ option }">
-        <div class="flex flex-col items-center gap-1 py-1">
-          <IconBody :color="option.color" class="w-[70%] object-cover rounded"/>
-          <span class="text-xl">{{ option.label }}</span>
-        </div>
-      </template>
-    </SelectButton>
 
 
-    <InputText name="name" type="text" placeholder="Naam" class="w-full my-1" v-model="guess.name"
-               size="large"/>
+    <GenderSelect v-model="guess.gender" class="my-2"/>
 
-    <div class="flex flex-col md:flex-row items-stretch gap-4 py-1">
+    <InputGroup>
+      <InputGroupAddon>
+        <BaseIcon name="babyBottle" size="35px"/>
+      </InputGroupAddon>
+      <InputText name="name" type="text" placeholder="Naam" class="w-full my-1" v-model="guess.name"
+                 size="large"/>
+    </InputGroup>
+
+
+
+    <div class="flex flex-col md:flex-row items-stretch gap-1 py-1">
       <InputGroup>
         <InputGroupAddon>
-          <IconRuler color="#000000"/>
+          <BaseIcon name="ruler" size="35px"/>
         </InputGroupAddon>
-        <InputText v-model="guess.size" placeholder="Grootte"/>
+        <InputNumber v-model="guess.size" placeholder="Grootte"/>
         <InputGroupAddon>cm</InputGroupAddon>
       </InputGroup>
 
       <InputGroup>
         <InputGroupAddon>
-          <IconScale color="#000000"/>
+          <BaseIcon name="scale" size="35px"/>
         </InputGroupAddon>
-        <InputText v-model="guess.weight" placeholder="Gewicht"/>
+        <InputNumber v-model="guess.weight" placeholder="Gewicht"/>
         <InputGroupAddon>gram</InputGroupAddon>
       </InputGroup>
 
       <InputGroup>
         <InputGroupAddon>
-          <IconClock color="#000000"/>
+          <BaseIcon name="clock" size="35px"/>
         </InputGroupAddon>
-        <DatePicker v-model="guess.time" :inputProps="{ readonly: true }" placeholder="Datum en tijstip" showTime hourFormat="24"/>
+        <DatePicker v-model="guess.time" :inputProps="{ readonly: true }"
+                    placeholder="Datum en tijstip" showTime hourFormat="24"/>
       </InputGroup>
     </div>
-
     <Button class="w-full my-1 bg-secondary" @click="save()">Verzend</Button>
-
+  </div>
 </template>
 
