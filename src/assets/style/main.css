@@ -9,6 +9,10 @@
   --primary-color: #c8768; /* your color */
 }
 
+html {
+  font-size: 20px; /* adjust: 16px default, 14px = more compact UI */
+}
+
 .bg-secondary {
   background: #c87676;
 }
@@ -27,7 +31,12 @@
 .bg-wedding::before {
   content: "";
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 100dvh; /* important on modern iOS */
   background: rgba(255, 255, 255, 0.6);
   pointer-events: none;
   z-index: 0;

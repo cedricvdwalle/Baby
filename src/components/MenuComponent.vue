@@ -36,8 +36,6 @@ const menuItems = ref([
       <Button @click="emit('logout')" link><i class="pi pi-power-off m-1"></i></Button>
     </span>
   </div>
-
-  <!-- <div class="w-full border-t border-gray-300 my-1"></div> -->
 </template>
 
 <style scoped>

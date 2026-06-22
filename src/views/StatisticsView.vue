@@ -23,7 +23,7 @@ import NameWidget from "@/components/widgets/NameWidget.vue";
   </div>
 
   <div class="flex flex-col md:flex-row w-full gap-4 my-2">
-    <ParametersWidget view="Guess_widget_date" class="w-full md:w-[25%] lg:w-[50%]" icon="calendar" label="datum"/>
+    <ParametersWidget view="Guess_widget_date" class="w-full md:w-[25%] lg:w-[50%]" icon="calendar" label="datum" format="date"/>
     <ParametersWidget view="Guess_widget_time" class="w-full md:w-[25%] lg:w-[50%]" icon="clock" label="tijdstip"/>
   </div>
 
