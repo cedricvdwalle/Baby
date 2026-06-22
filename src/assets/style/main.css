@@ -6,9 +6,10 @@
 }
 
 :root {
-  --primary-color: #c8768; /* your color */
+  --p-primary-color: #16a34a; /* green-600 */
+  --p-primary-hover-color: #15803d;
+  --p-primary-active-color: #166534;
 }
-
 html {
   font-size: 20px; /* adjust: 16px default, 14px = more compact UI */
 }

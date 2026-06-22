@@ -1,15 +1,42 @@
-.bg-jongen{
-  background-color: #dfebeb;
+
+
+.bg-jongen {
+  background-color: #d9ecec;
 }
 
+.border-jongen {
+  border-color: #d9ecec;
+}
+
+.text-jongen {
+  color: #2f4a4a;
+}
+
+.bg-meisje {
+  background-color: #f3e9ec;
+}
+
+.border-meisje {
+  border-color: #f3e9ec;
+}
+
+.text-meisje {
+  color: #7a4f5c;
+}
+
+/*
 .bg-meisje{
   background-color: #f6ded8;
+}
+.text-meisje{
+  color: #6a3f36;
+}
+
+.bg-jongen{
+  background-color: #dfebeb;
 }
 
 .text-jongen{
   color: #3f5f5f;
 }
-
-.text-meisje{
-  color: #6a3f36;
-}
+*/

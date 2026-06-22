@@ -3,6 +3,10 @@ import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import {supabase} from "@/utils/supabase.js";
 
+import {useToast} from 'primevue/usetoast';
+import {Message} from "primevue";
+const toast = useToast();
+
 const router = useRouter()
 
 onMounted(async () => {
@@ -10,11 +14,7 @@ onMounted(async () => {
 
   if (error) {
     console.error(error)
-  }
-
-  if (data.session) {
-    router.push('/')
-  } else {
+  } else{
     router.push('/')
   }
 })
@@ -22,4 +22,7 @@ onMounted(async () => {
 
 <template>
   <p>Logging you in...</p>
+
+  <Message v-if="error" severity="error" icon="pi pi-times-circle" class="mb-2">{{ message }}</Message>
+
 </template>

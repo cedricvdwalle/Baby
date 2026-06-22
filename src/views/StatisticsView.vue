@@ -6,7 +6,7 @@ import NameWidget from "@/components/widgets/NameWidget.vue";
 </script>
 
 <template>
-  <span class="fredoka-text font-bold text-3xl">Dit denkt de rest!</span>
+  <span class="fredoka-text font-bold text-3xl">Dit denkt de rest?</span>
 
   <div class="w-full">
     <GenderWidget />

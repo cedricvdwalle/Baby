@@ -7,16 +7,14 @@ const genders = [
   {
     value: "jongen",
     label: "Jongen",
-    color: "#3f5f5f",
-    selectedClasses: "border-teal-500 shadow-md bg-jongen",
+    selectedClasses: "bg-jongen border-jongen",
     checkColor: "text-jongen",
     textColor: "text-jongen"
   },
   {
     value: "meisje",
     label: "Meisje",
-    color: "#6a3f36",
-    selectedClasses: "border-pink-400 shadow-md bg-meisje",
+    selectedClasses: "bg-meisje border-meisje",
     checkColor: "text-meisje",
     textColor: "text-meisje"
   },
@@ -29,7 +27,7 @@ const genders = [
         v-for="gender in genders"
         :key="gender.value"
         @click="selected = gender.value"
-        class="relative cursor-pointer rounded-2xl p-8 text-center transition-all shadow-sm"
+        class="relative cursor-pointer rounded-lg p-8 text-center transition-all shadow-sm border border-amber-200"
         :class="
         selected === gender.value
           ? gender.selectedClasses
@@ -37,10 +35,10 @@ const genders = [
       "
     >
       <div class="flex justify-center items-center">
-        <BaseIcon name="body" :class="gender.textColor" size="100px"/>
+        <BaseIcon name="babyBodyLines"  :class="gender.textColor" size="200px"/>
       </div>
 
-      <p class="mt-4 font-semibold text-gray-700">
+      <p class="mt-4 font-semibold text-xl" :class="gender.textColor" >
         {{ gender.label }}
       </p>
 

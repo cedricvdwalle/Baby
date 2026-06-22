@@ -31,7 +31,7 @@ async function getData(){
 
       <!-- filled part -->
       <div
-        class="absolute top-0 left-0 h-full bg-jongen transition-all"
+        class="absolute top-0 left-0 h-full bg-jongen"
         :style="{ width: widgetData.jongen_percentage + '%' }"
       />
 

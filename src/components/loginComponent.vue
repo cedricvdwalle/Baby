@@ -63,10 +63,10 @@ const verify = async () => {
               <InputGroupAddon>
                 <i class="pi pi-at"></i>
               </InputGroupAddon>
-              <InputText v-model="email" placeholder="email" class="flex-1" size="large" />
+              <InputText v-model="email" type="email" placeholder="email" class="flex-1" size="large" @keyup.enter="send"/>
             </InputGroup>
 
-            <Button @click="send">Verzend</Button>
+            <Button @click="send" severity="primary"> <i class="pi pi-send"/> Verzend </Button>
           </div>
         </div>
 
@@ -75,16 +75,26 @@ const verify = async () => {
             Vul je e-mail code in die je per mail hebt ontvangen.
             Opgelet hij durft wel eens in <span class="font-bold">spam</span> te belanden!
           </p>
-          <div class="flex gap-2">
-            <InputGroup>
-              <InputGroupAddon>
-                <i class="pi pi-key"></i>
-              </InputGroupAddon>
-              <InputText v-model="code" placeholder="code" class="flex-1" size="large"/>
-            </InputGroup>
 
-            <Button @click="verify">Inloggen</Button>
-            <Button @click="resend">Opnieuw</Button>
+          <div class="flex flex-col md:flex-row md:items-center gap-2 w-full">
+
+            <div class="w-full md:flex-1">
+              <InputGroup class="w-full">
+                <InputGroupAddon>
+                  <i class="pi pi-key"></i>
+                </InputGroupAddon>
+                <InputText v-model="code" placeholder="code" class="w-full" size="large" @keyup.enter="verify"/>
+              </InputGroup>
+            </div>
+
+            <div class="flex gap-2 w-full md:w-auto md:flex-1">
+              <Button @click="verify" class="flex-1 md:flex-none md:w-[50%]">
+                <i class="pi pi-sign-in"/> Inloggen
+              </Button>
+              <Button @click="resend" class="flex-1 md:flex-none md:w-[50%]">
+                <i class="pi pi-send"/> Opnieuw
+              </Button>
+            </div>
           </div>
         </div>
 
