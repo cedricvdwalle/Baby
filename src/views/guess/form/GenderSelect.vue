@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BaseIcon from "@/assets/icon/BaseIcon.vue";
+import {watch} from "vue";
 
 const selected = defineModel<"jongen" | "meisje" | null>();
 
@@ -19,6 +20,11 @@ const genders = [
     textColor: "text-meisje"
   },
 ] as const;
+
+watch(selected, () => {
+  // emit-like behavior already handled by v-model
+})
+
 </script>
 
 <template>

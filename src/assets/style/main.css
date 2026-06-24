@@ -19,6 +19,7 @@ html {
 }
 
 @import "tailwindcss";
+@config "../../../tailwind.config.ts";
 
  body{
    background-color: #fbf9f1;
@@ -27,6 +28,7 @@ html {
  .bg-wedding {
    background-image: url('@/assets/img/background_lq.jpg');
    background-size: cover;
+   background-position: right center;
  }
 
 .bg-wedding::before {
