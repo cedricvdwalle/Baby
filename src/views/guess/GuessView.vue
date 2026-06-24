@@ -197,8 +197,10 @@ async function save() {
 
   <Dialog v-model:visible="visible"
           modal header="Verzonden!"
+          class="w-[95vw] md:w-[40rem]"
           pt:root:class="!bg-amber-200/90 !border-0 !bg-yellow-50/90"
-          :style="{ width: '50rem' }">
+          pt:content:class="!p-1 sm:p-4"
+          >
     <template #header>
       <div class="text-3xl font-bold">
         Verzonden!

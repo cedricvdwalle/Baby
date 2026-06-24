@@ -9,12 +9,13 @@
             <div class="text-[10px]">Identiteitskaart</div>
           </div>
 
-          <div>
+          <span class="hidden sm:block">
+            <div>
             <div class="font-bold">belgique</div>
             <div class="text-[10px]">carte d'identité</div>
           </div>
 
-          <div class="hidden sm:block">
+          <div>
             <div class="font-bold">belgien</div>
             <div class="text-[10px]">personalausweis</div>
           </div>
@@ -23,6 +24,7 @@
             <div class="font-bold">belgium</div>
             <div class="text-[10px]">identity card</div>
           </div>
+          </span>
         </div>
       </div>
       <div class="ml-auto w-10 flex-shrink-0 shadow-lg">
@@ -41,7 +43,7 @@
       <!-- Identity grid -->
       <div class="flex-1 text-sm">
 
-        <div class="grid grid-cols-2 gap-x-1 gap-y-1 lg:text-lg/5">
+        <div class="grid md:grid-cols-2 gap-x-1 gap-y-1 lg:text-lg/5">
 
           <IdentityLabel label="Naam" value="van de Walle"/>
           <IdentityLabel label="Voornaam" :value="person.name"/>
