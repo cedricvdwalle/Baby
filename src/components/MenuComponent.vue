@@ -25,9 +25,9 @@ const menuItems = ref([
     <div class="flex items-center gap-3 ml-5">
       <span class="flex items-center" v-for="item in menuItems">
         <span :class="route.path === item.to ? 'bg-yellow-50 rounded-t-md' : ''" class="p-2">
-          <RouterLink :to="item.to" class="text-lg"><i class="pi m-1" :class="item.icon"></i> {{
-              item.label
-            }}</RouterLink>
+          <RouterLink :to="item.to" class="text-lg"><i class="pi m-1" :class="item.icon"></i>
+            <span class="hidden md:inline-block"> {{ item.label }}</span>
+          </RouterLink>
         </span>
       </span>
     </div>
