@@ -3,28 +3,28 @@
     <!-- Top government header -->
     <div class="bg-gradient-to-r from-emerald-300 to-blue-300 text-white px-4 py-2 flex items-center rounded-t-lg overflow-hidden">
       <div class="text-lg tracking-widest uppercase flex gap-1 items-center w-full">
-        <div class="flex gap-4">
+        <div class="flex gap-4 flex-nowrap items-center overflow-x-auto">
           <div>
             <div class="font-bold">belgie</div>
             <div class="text-[10px]">Identiteitskaart</div>
           </div>
 
-          <span class="hidden sm:block">
-            <div>
+          <div class="hidden sm:flex gap-4">
+          <div class="flex-shrink-0">
             <div class="font-bold">belgique</div>
             <div class="text-[10px]">carte d'identité</div>
           </div>
 
-          <div>
+          <div class="flex-shrink-0">
             <div class="font-bold">belgien</div>
             <div class="text-[10px]">personalausweis</div>
           </div>
 
-          <div>
+          <div class="flex-shrink-0">
             <div class="font-bold">belgium</div>
             <div class="text-[10px]">identity card</div>
           </div>
-          </span>
+          </div>
         </div>
       </div>
       <div class="ml-auto w-10 flex-shrink-0 shadow-lg">
